@@ -59,6 +59,68 @@ void draw()
 	printf("\n");
 	printf("press X to quit the game");
 }
+       if(i<20){
+ 		   m[i]=x;
+ 		   n[i]=y;
+ 		   i++;
+	       }
+
+		 if(i>=20)
+
+		 {
+	 		  for(j=con;j>=0;j--){
+		 		  m[1+j]=m[j];
+		 		  n[1+j]=n[j];
+	 		 		  }
+		   m[0]=x;
+		   n[0]=y;
+
+		   setcolor(WHITE);
+		   setfillstyle(SOLID_FILL,con);
+		   circle(m[0],n[0],8);
+		   floodfill(m[0],n[0],WHITE);
+
+		   setcolor(WHITE);
+		   for(j=1;j<con;j++){
+		  setfillstyle(SOLID_FILL,con+j%3);
+		   circle(m[j],n[j],5);
+		   floodfill(m[j],n[j],WHITE);
+		 		      }
+       delay(spd);
+
+		  setcolor(BLACK);
+		  setfillstyle(SOLID_FILL,BLACK);
+		   circle(m[0],n[0],8);
+		   floodfill(m[0],n[0],BLACK);
+
+		   setcolor(BLACK);
+		  setfillstyle(SOLID_FILL,BLACK);
+		   circle(m[j],n[j],5);
+		   floodfill(m[j],n[j],BLACK);
+
+		   }
+     stop=clock();
+     t=(stop-start)/CLK_TCK;
+     printf(" TIME %d sec   ",t);
+     printf("SCORE %d
+",con-5);
+     check();
+
+    if(x==p&&y==q) { con=con+5; if(spd>=5) spd=spd-5; else spd=5;
+		 		      if(con>490) win();
+     p=random(maxx); temp=p%13;  p=p-temp;
+     q=random(maxy); temp=q%14;   q=q-temp;
+		 		    }
+    if(a==1)  y =  y-14; if(y<0) { temp=maxy%14;y=maxy-temp;}
+    if(a==2)  y =  y+14; if(y>maxy) y=0;
+    if(a==3)  x =  x-13; if(x<0) { temp=maxx%13;x=maxx-temp;}
+    if(a==4)  x =  x+13; if(x>maxx) x=0;
+    if(a==0){  y = y+14 ;  x=x+13; }
+		 }
+
+ }
+
+
 
 // Function to take the input
 void input()
